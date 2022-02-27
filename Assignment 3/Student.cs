@@ -5,7 +5,7 @@ namespace Assignment_3
 {
     public class Student
     {
-        List<string> logs = new List<string>(100);
+        public List<string> logs = new List<string>(100);
 
         //Fields
         private readonly int _id;

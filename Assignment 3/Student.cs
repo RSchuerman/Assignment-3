@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Assignment_3
 {
@@ -8,7 +9,7 @@ namespace Assignment_3
         public List<string> logs = new List<string>(100);
 
         //Fields
-        private readonly int _id;
+        public readonly double _id;
         private string _name;
         private string _major;
         private string _startDate;
@@ -41,18 +42,36 @@ namespace Assignment_3
         {
             get { return _startDate; }
             set 
-            { 
-                _startDate = value;
-                logSuccess("startDate");
+            {
+                if (value.Length == 6 && value.All(char.IsDigit))
+                {
+                    _startDate = value;
+                    logSuccess("startDate");
+                }
+                else
+                {
+                    _startDate = "None";
+                    Console.WriteLine("Not a valid start date");
+                    logFail("startDate");
+                }
             }
         }
         public string anticipatedGradDate
         {
             get { return _anticipatedGradDate; }
             set 
-            { 
-                _anticipatedGradDate = value;
-                logSuccess("anticipatedGradDate");
+            {
+                if (value.Length == 6 && value.All(char.IsDigit))
+                {
+                    _anticipatedGradDate = value;
+                    logSuccess("anticipatedGradDate");
+                }
+                else
+                {
+                    _anticipatedGradDate = "None";
+                    Console.WriteLine("Not a valid graduation date");
+                    logFail("anticipateGradDate");
+                }
             }
         }
         public string state
@@ -69,8 +88,17 @@ namespace Assignment_3
             get { return _email; }
             set 
             {
-                _email = value;
-                logSuccess("email");
+                if( value.Contains("@trojans.dsu.edu"))
+                {
+                    _email = value;
+                    logSuccess("email");
+                }
+                else
+                {
+                    _email = "None";
+                    Console.WriteLine("Not a valid email address");
+                    logFail("email");
+                }
             }
         }
         public string phoneNumber
@@ -85,6 +113,7 @@ namespace Assignment_3
                 }
                 else
                 {
+                    _phoneNumber = "None";
                     Console.WriteLine("Not a valid phone number");
                     logFail("phoneNumber");
                 }
@@ -102,7 +131,7 @@ namespace Assignment_3
         #endregion
 
         //Constructors
-        public Student(int id)
+        public Student(double id)
         {
             _id = id;
             _name = "None";
@@ -113,21 +142,22 @@ namespace Assignment_3
             _email = "None";
             _phoneNumber = "None";
             _mailingAddress = "None";
-        
+            logNewStudent();
         }
 
-        public Student(int id, string name, string major, string startDate, string anticipatedGradDate, string state, string email, string phoneNumber, string mailingAddress)
+        public Student(double id, string n_name, string n_major, string n_startDate, string n_anticipatedGradDate, string n_state, string n_email, string n_phoneNumber, string n_mailingAddress)
         {
             _id = id;
-            _name = name;
-            _major = major;
-            _startDate = startDate;
-            _anticipatedGradDate = anticipatedGradDate;
-            _state = state;
-            _email = email;
-            _phoneNumber = phoneNumber;
-            _mailingAddress = mailingAddress;
-    }
+            name = n_name;
+            major = n_major;
+            startDate = n_startDate;
+            anticipatedGradDate = n_anticipatedGradDate;
+            state = n_state;
+            email = n_email;
+            phoneNumber = n_phoneNumber;
+            mailingAddress = n_mailingAddress;
+            logNewStudent();
+         }
 
         //Destructor
         ~Student()
@@ -143,6 +173,10 @@ namespace Assignment_3
         {
             logs.Add(field + ".ChangeFailure." + _id + "\n");
         }
+        private void logNewStudent()
+        {
+            logs.Add("NewStudentSuccess." + _id + "\n");
+        }
 
         public void printLogs()
         {
@@ -150,5 +184,18 @@ namespace Assignment_3
                 Console.WriteLine(a);
         }
         
+        public void printStudent()
+        {
+            Console.WriteLine("ID: " + _id);
+            Console.WriteLine("Name: " + name);
+            Console.WriteLine("Major: " + major);
+            Console.WriteLine("Start Date: " + startDate.Substring(0,2) + "/" + startDate.Substring(2,4));
+            Console.WriteLine("Anticipated Graduation Date: " + anticipatedGradDate.Substring(0,2) + "/" + anticipatedGradDate.Substring(2,4));
+            Console.WriteLine("State: " + state);
+            Console.WriteLine("Email Address: " + email);
+            Console.WriteLine("Phone Number: (" + phoneNumber.Substring(0,3) + ")" + phoneNumber.Substring(3,3) + "-" + phoneNumber.Substring(6,4));
+            Console.WriteLine("Mailing Address: " + mailingAddress);
+            Console.WriteLine("");
+        }
     }
 }

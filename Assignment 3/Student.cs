@@ -18,7 +18,7 @@ namespace Assignment_3
         private string _email;
         private string _phoneNumber;
         private string _mailingAddress;
-        public readonly Boolean isPrivateStudent;
+        public readonly Boolean _isPrivateStudent;
 
         #region Properties
         public string name
@@ -106,7 +106,7 @@ namespace Assignment_3
         {
             get 
             {
-                if (isPrivateStudent)
+                if (_isPrivateStudent)
                     return "Restricted";
                 else
                     return _phoneNumber; 
@@ -130,7 +130,7 @@ namespace Assignment_3
         {
             get 
             {
-                if (isPrivateStudent)
+                if (_isPrivateStudent)
                     return "Restricted";
                 else
                     return _mailingAddress; 
@@ -155,7 +155,7 @@ namespace Assignment_3
             _email = "None";
             _phoneNumber = "None";
             _mailingAddress = "None";
-            isPrivateStudent = privateStudent;
+            _isPrivateStudent = privateStudent;
             logNewStudent();
         }
 
@@ -170,7 +170,7 @@ namespace Assignment_3
             email = n_email;
             phoneNumber = n_phoneNumber;
             mailingAddress = n_mailingAddress;
-            isPrivateStudent = privateStudent;
+            _isPrivateStudent = privateStudent;
             logNewStudent();
          }
 

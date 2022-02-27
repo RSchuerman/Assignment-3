@@ -6,7 +6,7 @@ namespace Assignment_3
 {
     public class Student
     {
-        public List<string> logs = new List<string>(100);
+        public readonly List<string> logs = new List<string>(100);
 
         //Fields
         public readonly double _id;
@@ -18,6 +18,7 @@ namespace Assignment_3
         private string _email;
         private string _phoneNumber;
         private string _mailingAddress;
+        public readonly Boolean isPrivateStudent;
 
         #region Properties
         public string name
@@ -103,7 +104,13 @@ namespace Assignment_3
         }
         public string phoneNumber
         {
-            get { return _phoneNumber; }
+            get 
+            {
+                if (isPrivateStudent)
+                    return "Restricted";
+                else
+                    return _phoneNumber; 
+            }
             set 
             {
                 if (value.Length == 10)
@@ -121,7 +128,13 @@ namespace Assignment_3
         }
         public string mailingAddress
         {
-            get { return _mailingAddress; }
+            get 
+            {
+                if (isPrivateStudent)
+                    return "Restricted";
+                else
+                    return _mailingAddress; 
+            }
             set 
             { 
                 _mailingAddress = value;
@@ -131,7 +144,7 @@ namespace Assignment_3
         #endregion
 
         //Constructors
-        public Student(double id)
+        public Student(double id, Boolean privateStudent)
         {
             _id = id;
             _name = "None";
@@ -142,10 +155,11 @@ namespace Assignment_3
             _email = "None";
             _phoneNumber = "None";
             _mailingAddress = "None";
+            isPrivateStudent = privateStudent;
             logNewStudent();
         }
 
-        public Student(double id, string n_name, string n_major, string n_startDate, string n_anticipatedGradDate, string n_state, string n_email, string n_phoneNumber, string n_mailingAddress)
+        public Student(double id, string n_name, string n_major, string n_startDate, string n_anticipatedGradDate, string n_state, string n_email, string n_phoneNumber, string n_mailingAddress, Boolean privateStudent)
         {
             _id = id;
             name = n_name;
@@ -156,6 +170,7 @@ namespace Assignment_3
             email = n_email;
             phoneNumber = n_phoneNumber;
             mailingAddress = n_mailingAddress;
+            isPrivateStudent = privateStudent;
             logNewStudent();
          }
 
@@ -193,7 +208,10 @@ namespace Assignment_3
             Console.WriteLine("Anticipated Graduation Date: " + anticipatedGradDate.Substring(0,2) + "/" + anticipatedGradDate.Substring(2,4));
             Console.WriteLine("State: " + state);
             Console.WriteLine("Email Address: " + email);
-            Console.WriteLine("Phone Number: (" + phoneNumber.Substring(0,3) + ")" + phoneNumber.Substring(3,3) + "-" + phoneNumber.Substring(6,4));
+            if (!phoneNumber.Contains("Restricted"))
+                Console.WriteLine("Phone Number: (" + phoneNumber.Substring(0, 3) + ")" + phoneNumber.Substring(3, 3) + "-" + phoneNumber.Substring(6, 4));
+            else
+                Console.WriteLine("Phone Number: Restricted");
             Console.WriteLine("Mailing Address: " + mailingAddress);
             Console.WriteLine("");
         }

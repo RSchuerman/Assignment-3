@@ -8,47 +8,68 @@ namespace Assignment_3
         static void Main(string[] args)
         {
             List<string> logs = new List<string>(100);
-            var s = new Student(123456789);
-            s.email = "reed.schuerman@trojans.dsu.edu";
-            var r = new Student(1234543);
-            r.email = "reed.schuerman@trojans.dsu.edu";
-            s.phoneNumber = "123456";
-            s.phoneNumber = "1234567890";
-            s.anticipatedGradDate = "022024";
-            s.anticipatedGradDate = "0224";
-            s.startDate = "082020";
-            s.startDate = "0820";
 
-            var n = new Student(101060649);
-            n.name = "Reed Owen Schuerman";
-            n.major = "Computer Science";
-            n.startDate = "082020";
-            n.anticipatedGradDate = "052024";
-            n.state = "Minnesota";
-            n.email = "reed.schuerman@trojans.dsu.edu";
-            n.phoneNumber = "5078296798";
-            n.mailingAddress = "106 West Thomas Ave Marshall MN 56258";
-
-            var q = new Student(10, "Billy Bob Jones", "Exercise Science", "082021", "052025", "Iowa", "Billy.Jones@trojans.dsu.edu", "6058675309", "The White House");
-
-            
+            var a = new Student(1, "Billy Bob Jones", "Exercise Science", "082021", "052025", "Iowa", "Billy.Jones@trojans.dsu.edu", "6058675309", "The White House", false);
+            /* Extra Students
+            var b = new Student(2, "Billy Bob Jones", "Exercise Science", "082021", "052025", "Iowa", "Billy.Jones@trojans.dsu.edu", "6058675309", "The White House", false);
+            var c = new Student(3, "Billy Bob Jones", "Exercise Science", "082021", "052025", "Iowa", "Billy.Jones@trojans.dsu.edu", "6058675309", "The White House", false);
+            var d = new Student(4, "Billy Bob Jones", "Exercise Science", "082021", "052025", "Iowa", "Billy.Jones@trojans.dsu.edu", "6058675309", "The White House", false);
+            var e = new Student(5, "Billy Bob Jones", "Exercise Science", "082021", "052025", "Iowa", "Billy.Jones@trojans.dsu.edu", "6058675309", "The White House", false);
+            var f = new Student(6, "Billy Bob Jones", "Exercise Science", "082021", "052025", "Iowa", "Billy.Jones@trojans.dsu.edu", "6058675309", "The White House", false);
+            var g = new Student(7, "Billy Bob Jones", "Exercise Science", "082021", "052025", "Iowa", "Billy.Jones@trojans.dsu.edu", "6058675309", "The White House", false);
+            var h = new Student(8, "Billy Bob Jones", "Exercise Science", "082021", "052025", "Iowa", "Billy.Jones@trojans.dsu.edu", "6058675309", "The White House", false);
+            var i = new Student(9, "Billy Bob Jones", "Exercise Science", "082021", "052025", "Iowa", "Billy.Jones@trojans.dsu.edu", "6058675309", "The White House", false);
+            */
+            var j = new Student(101060649, true);
+            j.name = "Reed Owen Schuerman";
+            j.major = "Computer Science";
+            j.startDate = "082020";
+            j.anticipatedGradDate = "052024";
+            j.state = "Minnesota";
+            j.email = "reed.schuerman@trojans.dsu.edu";
+            j.phoneNumber = "5078296798";
+            j.mailingAddress = "106 West Thomas Ave Marshall MN 56258";
 
             //compile all logs together and prints them out
-            foreach ( string a in s.logs)
-                logs.Add(a);
-            foreach( string a in r.logs)
-                logs.Add(a);
-            foreach (string a in n.logs)
-                logs.Add(a);
-            foreach (string a in q.logs)
-                logs.Add(a);
+            foreach (string z in a.logs)
+                logs.Add(z);
+            /* Extra Students
+            foreach (string z in b.logs)
+                logs.Add(z);
+            foreach (string z in c.logs)
+                logs.Add(z);
+            foreach (string z in d.logs)
+                logs.Add(z);
+            foreach (string z in e.logs)
+                logs.Add(z);
+            foreach (string z in f.logs)
+                logs.Add(z);
+            foreach (string z in g.logs)
+                logs.Add(z);
+            foreach (string z in h.logs)
+                logs.Add(z);
+            foreach (string z in i.logs)
+                logs.Add(z);
+            */
+            foreach (string z in j.logs)
+                logs.Add(z);
 
-            foreach (string a in logs)
-                Console.WriteLine(a);
+            foreach (string z in logs)
+                Console.WriteLine(z);
 
             //Prints Students
-            n.printStudent();
-            q.printStudent();
+            a.printStudent();
+            /* Extra Students
+            b.printStudent();
+            c.printStudent();
+            d.printStudent();
+            e.printStudent();
+            f.printStudent();
+            g.printStudent();
+            h.printStudent();
+            i.printStudent();
+            */
+            j.printStudent();
 
         }       
     }
